@@ -14,7 +14,9 @@ export const onBoardUser = async() => {
         if (!user) {
             return {success: false, error: "No authenticated user found"}
         }
-        const {id, firstName, lastName, imageUrl, emailAddressess} = user
+        const {id, firstName, lastName, imageUrl, emailAddresses} = user
+
+
 
         const newUser = await db.user.upsert({
             where:{
@@ -24,17 +26,17 @@ export const onBoardUser = async() => {
                 firstName: firstName || null,
                 lastName: lastName || null,
                 imageUrl: imageUrl || null,
-                email: emailAddressess[0]?.emailAddressess || ""
+                email: emailAddresses[0]?.emailAddress || ""
             },
             create:{
                 clerkId: id,
                 firstName: firstName || null,
                 lastName: lastName || null,
                 imageUrl: imageUrl || null,
-                email: emailAddressess[0]?.emailAddressess || ""
+                email: emailAddresses[0]?.emailAddress || ""
 
             }
-        })
+        });
         return {
             success: true,
             user: newUser,

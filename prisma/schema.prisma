@@ -1,6 +1,5 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -12,13 +11,15 @@ enum UserRole {
   USER
 }
 
+
+
 model User {
   id        Int      @id @default(autoincrement())
   clerkId   String   @unique
   email     String   @unique
   role      UserRole @default(USER)
-  firstName String
-  lastName  String
+  firstName String?  // Made optional
+  lastName  String?  // Made optional
   imageUrl  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

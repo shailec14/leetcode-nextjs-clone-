@@ -1,12 +1,87 @@
+import {
+  Code2,
+  Trophy,
+  Users,
+  Zap,
+  ChevronRight,
+  Play,
+  Star,
+  Moon,
+  Sun,
+  Menu,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { onBoardUser } from "@/modules/auth/actions";
-import { UserButton } from "@clerk/nextjs";
-import Image from "next/image";
 
 export default async function Home() {
   await onBoardUser()
 
-   
+   const features = [
+    {
+      icon: <Code2 className="w-6 h-6" />,
+      title: "Interactive Coding",
+      description:
+        "Practice with real-world coding challenges and get instant feedback on your solutions.",
+    },
+    {
+      icon: <Trophy className="w-6 h-6" />,
+      title: "Track Progress",
+      description:
+        "Monitor your improvement with detailed analytics and achievement systems.",
+    },
+    {
+      icon: <Users className="w-6 h-6" />,
+      title: "Global Community",
+      description:
+        "Learn from thousands of developers worldwide and share your knowledge.",
+    },
+    {
+      icon: <Zap className="w-6 h-6" />,
+      title: "Real-time Feedback",
+      description:
+        "Get instant feedback on your solutions with detailed explanations.",
+    },
+  ];
+  const stats = [
+    { number: "50K+", label: "Problems Solved" },
+    { number: "10K+", label: "Active Developers" },
+    { number: "25+", label: "Programming Languages" },
+    { number: "98%", label: "Success Rate" },
+  ];
+   const problemCategories = [
+    {
+      level: "Beginner",
+      title: "Easy Problems",
+      description:
+        "Perfect for getting started with basic programming concepts and syntax.",
+      count: "500+ Problems",
+      color: "amber",
+    },
+    {
+      level: "Intermediate",
+      title: "Medium Problems",
+      description:
+        "Challenge yourself with data structures and algorithm problems.",
+      count: "800+ Problems",
+      color: "indigo",
+    },
+    {
+      level: "Advanced",
+      title: "Hard Problems",
+      description:
+        "Master complex algorithms and compete in programming contests.",
+      count: "300+ Problems",
+      color: "amber",
+    },
+  ];
    return (
     <div className="min-h-screen  transition-colors mt-24">
       {/* Hero Section */}

@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/ui/mode-toggle"
-import { UserRole } from "@/src/generated/enums"
+import { UserRole } from "@prisma/client"
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs"
 import Link from "next/link"
 import React from "react"
+import Image from "next/image"
 
 const Navbar = ({userRole}) => {
   return (
