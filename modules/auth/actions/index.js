@@ -15,25 +15,23 @@ export const onBoardUser = async() => {
             return {success: false, error: "No authenticated user found"}
         }
         const {id, firstName, lastName, imageUrl, emailAddresses} = user
-
-
-
+       
         const newUser = await db.user.upsert({
             where:{
                 clerkId: id
             },
             update:{
-                firstName: firstName || null,
-                lastName: lastName || null,
-                imageUrl: imageUrl || null,
-                email: emailAddresses[0]?.emailAddress || ""
+                firstName: firstName ?? null,
+                lastName: lastName ?? null,
+                imageUrl: imageUrl ?? null,
+                email: emailAddresses[0]?.emailAddress ,
             },
             create:{
                 clerkId: id,
-                firstName: firstName || null,
-                lastName: lastName || null,
-                imageUrl: imageUrl || null,
-                email: emailAddresses[0]?.emailAddress || ""
+                firstName: firstName ?? null,
+                lastName: lastName ?? null,
+                imageUrl: imageUrl ?? null,
+                email: emailAddresses[0]?.emailAddress 
 
             }
         });
@@ -72,4 +70,19 @@ export const currentUserRole = async() => {
     } catch (error) {
         
     }
+}
+
+export const getCurrentUser = async() => {
+    const user = await currentUser()
+
+    const dbUser = await db.user.findUnique({
+        where:{
+            clerkId: user.id
+        },
+        select:{
+            id: true
+        }
+    }
+    )
+    return dbUser 
 }
